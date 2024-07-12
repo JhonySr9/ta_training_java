@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+    <suite name="All" verbose="2">
+        <test name="pricingCalculator">
+            <classes>
+                <class name="com.epam.training.jhony_soto.fundamental.tests.PricingCalculatorTests" />
+            </classes>
+        </test>
+</suite>
