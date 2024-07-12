@@ -1,6 +1,7 @@
 package com.epam.training.jhony_soto.fundamental.tests;
 
 import com.epam.training.jhony_soto.fundamental.driver.DriverInitialization;
+import com.epam.training.jhony_soto.fundamental.util.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
@@ -9,6 +10,7 @@ import org.testng.annotations.*;
  * This class sets up the WebDriver and WebDriverWait for the tests.
  */
 
+@Listeners({TestListener.class})
 public class BaseTests {
 
     protected WebDriver driver;
@@ -36,6 +38,7 @@ public class BaseTests {
     @BeforeMethod
     public void setUp(){
         driver = DriverInitialization.getDriver();
+        driver.manage().window().maximize();
     }
 
     /**

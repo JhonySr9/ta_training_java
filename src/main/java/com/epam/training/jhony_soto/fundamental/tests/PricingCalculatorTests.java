@@ -5,7 +5,7 @@ import com.epam.training.jhony_soto.fundamental.pages.*;
 import com.epam.training.jhony_soto.fundamental.services.CreatePricingOrder;
 import org.testng.annotations.Test;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.AssertJUnit.*;
 
 /**
  * This class contains test cases for Google Cloud Pricing Calculator.
@@ -73,5 +73,49 @@ public class PricingCalculatorTests extends BaseTests {
         assertTrue(costEstimateSummaryPage.localSSDCorresponds(order.getSSD()));
         assertTrue(costEstimateSummaryPage.dataCenterLocationCorresponds(order.getDataCenterLocation()));
         assertTrue(costEstimateSummaryPage.committedUsageCorresponds(COMMITTED_USAGE_1YEAR_OPTION));
+    }
+
+    /**
+     * Testing of the Pricing Calculator functionality.
+     * @throws InterruptedException error in case a value is not displayed after a wait.
+     */
+    @Test (groups = {"smoke"}, invocationCount = 1)
+    public void failedUsePricingCalculatorTest() throws InterruptedException {
+        ////// Data //////
+        PricingOrder order = CreatePricingOrder.withAllData();
+
+        ////// Test //////
+        // Navigate to the home page
+        goToURL(HOMEPAGE_URL);
+
+        // Instantiate the home page and search for the pricing calculator
+        var googleCloud_homePage = new HomePage(driver);
+        googleCloud_homePage.useSearchBar(PRICING_CALCULATOR_SEARCH_VALUE);
+
+        var resultsPage =  new ResultsPage(driver);
+        resultsPage.selectSearchResult(PRICING_CALCULATOR_SEARCH_VALUE);
+
+        // Select the search result and navigate to the pricing calculator page
+        var pricingCalculatorPage =  new PricingCalculatorPage(driver);
+        pricingCalculatorPage.pressAddAnEstimateButton();
+        pricingCalculatorPage.openComputeEnginePage();
+
+        // Fill in the form on the Compute Engine page
+        var computeEnginePage = new ComputeEnginePage(driver);
+        computeEnginePage.addGPU_activateButton();
+        computeEnginePage.addInstances(order.getInstances());
+        computeEnginePage.selectOperatingSystemValue(order.getOperatingSystem());
+        computeEnginePage.selectProvisioningModel_regular();
+        computeEnginePage.selectMachineFamily(order.getMachineFamily());
+        computeEnginePage.selectSeries(order.getSeries());
+        computeEnginePage.selectMachineType(order.getMachineType());
+        computeEnginePage.addGPU_selectGPUModel(order.getAddGPU_GPUModel());
+        computeEnginePage.addGPU_selectGPUNumber();
+        computeEnginePage.selectLocalSSD(order.getSSD());
+        computeEnginePage.selectDataCenterLocation(order.getDataCenterLocation());
+        computeEnginePage.selectCommittedUse_oneYear();
+
+        // Verify the estimated cost is not there, which will activate the Screenshot for failure.
+        assertFalse(computeEnginePage.getEstimatedCost());
     }
 }
