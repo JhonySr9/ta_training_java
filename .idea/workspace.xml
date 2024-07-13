@@ -4,12 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be9a7ee5-fc77-4ce8-888f-26bddff8cd1e" name="Changes" comment="Pricing Calculator from Google Framework - Version 1.0">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/util/TestListener.java" afterDir="false" />
+    <list default="true" id="be9a7ee5-fc77-4ce8-888f-26bddff8cd1e" name="Changes" comment="Added Test Listeners to take a screenshot at failure. Version 1.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/services/TestDataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/services/TestDataReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/AbstractPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/AbstractPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/ComputeEnginePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/ComputeEnginePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/CostEstimateSummaryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/CostEstimateSummaryPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/HomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/PricingCalculatorPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/PricingCalculatorPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/ResultsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/ResultsPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/tests/BaseTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/tests/BaseTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/tests/PricingCalculatorTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/tests/PricingCalculatorTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/staging.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/staging.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,13 +40,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/jhony/Downloads/ta_training_java/src/main/resources"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jhony/Downloads/ta_training_java/src/main/resources&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jhony\Downloads\ta_training_java\src\main\resources" />
@@ -49,7 +54,7 @@
       <recent name="C:\Users\jhony\Downloads\ta_training_java\src\test\java" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.PricingCalculatorTests.failedUsePricingCalculatorTest">
+  <component name="RunManager" selected="TestNG.PricingCalculatorTests.usePricingCalculatorTest">
     <configuration name="PricingCalculatorTests" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="ta_training_java" />
       <extension name="coverage">
@@ -85,10 +90,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PricingCalculatorTests.usePricingCalculatorTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="ta_training_java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.epam.training.jhony_soto.fundamental.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.epam.training.jhony_soto.fundamental.tests" />
+      <option name="MAIN_CLASS_NAME" value="com.epam.training.jhony_soto.fundamental.tests.PricingCalculatorTests" />
+      <option name="METHOD_NAME" value="usePricingCalculatorTest" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.PricingCalculatorTests.failedUsePricingCalculatorTest" />
+        <item itemvalue="TestNG.PricingCalculatorTests.usePricingCalculatorTest" />
         <item itemvalue="TestNG.PricingCalculatorTests" />
+        <item itemvalue="TestNG.PricingCalculatorTests.failedUsePricingCalculatorTest" />
       </list>
     </recent_temporary>
   </component>
@@ -108,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720756645115</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added Test Listeners to take a screenshot at failure. Version 1.1">
+      <created>1720760884405</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1720760884405</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -124,6 +155,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Pricing Calculator from Google Framework - Version 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pricing Calculator from Google Framework - Version 1.0" />
+    <MESSAGE value="Added Test Listeners to take a screenshot at failure. Version 1.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Test Listeners to take a screenshot at failure. Version 1.1" />
   </component>
 </project>

@@ -23,22 +23,23 @@ public class PricingCalculatorTests extends BaseTests {
         PricingOrder order = CreatePricingOrder.withAllData();
 
         ////// Test //////
-        // Navigate to the home page
+        // 1. Navigate to the home page.
         goToURL(HOMEPAGE_URL);
 
-        // Instantiate the home page and search for the pricing calculator
+        // 2. Search for the pricing calculator.
         var googleCloud_homePage = new HomePage(driver);
         googleCloud_homePage.useSearchBar(PRICING_CALCULATOR_SEARCH_VALUE);
 
+        // 3. Select the search result.
         var resultsPage =  new ResultsPage(driver);
         resultsPage.selectSearchResult(PRICING_CALCULATOR_SEARCH_VALUE);
 
-        // Select the search result and navigate to the pricing calculator page
+        //4. Navigate to the pricing calculator page.
         var pricingCalculatorPage =  new PricingCalculatorPage(driver);
         pricingCalculatorPage.pressAddAnEstimateButton();
         pricingCalculatorPage.openComputeEnginePage();
 
-        // Fill in the form on the Compute Engine page
+        // 5. Fill in the form on the Compute Engine page.
         var computeEnginePage = new ComputeEnginePage(driver);
         computeEnginePage.addGPU_activateButton();
         computeEnginePage.addInstances(order.getInstances());
@@ -48,20 +49,19 @@ public class PricingCalculatorTests extends BaseTests {
         computeEnginePage.selectSeries(order.getSeries());
         computeEnginePage.selectMachineType(order.getMachineType());
         computeEnginePage.addGPU_selectGPUModel(order.getAddGPU_GPUModel());
-        computeEnginePage.addGPU_selectGPUNumber();
+        computeEnginePage.addGPU_selectGPUNumber(order.getAddGPU_GPUNumber());
         computeEnginePage.selectLocalSSD(order.getSSD());
         computeEnginePage.selectDataCenterLocation(order.getDataCenterLocation());
         computeEnginePage.selectCommittedUse_oneYear();
 
-        // Verify the estimated cost
+        // 6. Verify the estimated cost.
         assertTrue(computeEnginePage.getEstimatedCost());
 
-        // Share the estimate and navigate to the summary page
+        // 7. Share the estimate and navigate to the summary page.
         computeEnginePage.submitShareButton();
         computeEnginePage.clickEstimateSummaryButton(SUMMARY_TAB_NAME);
 
-        //////Assertions//////
-        // Assertions to verify the values on the summary page
+        // 8. Verify the values on the summary page corresponds to the data used to fill the form.
         var costEstimateSummaryPage = new CostEstimateSummaryPage(driver);
         assertTrue(costEstimateSummaryPage.numberOfInstancesCorresponds(order.getInstances()));
         assertTrue(costEstimateSummaryPage.operatingSystemCorresponds(order.getOperatingSystem()));
@@ -85,22 +85,23 @@ public class PricingCalculatorTests extends BaseTests {
         PricingOrder order = CreatePricingOrder.withAllData();
 
         ////// Test //////
-        // Navigate to the home page
+        // 1. Navigate to the home page.
         goToURL(HOMEPAGE_URL);
 
-        // Instantiate the home page and search for the pricing calculator
+        // 2. Search for the pricing calculator.
         var googleCloud_homePage = new HomePage(driver);
         googleCloud_homePage.useSearchBar(PRICING_CALCULATOR_SEARCH_VALUE);
 
+        // 3. Select the search result.
         var resultsPage =  new ResultsPage(driver);
         resultsPage.selectSearchResult(PRICING_CALCULATOR_SEARCH_VALUE);
 
-        // Select the search result and navigate to the pricing calculator page
+        //4. Navigate to the pricing calculator page.
         var pricingCalculatorPage =  new PricingCalculatorPage(driver);
         pricingCalculatorPage.pressAddAnEstimateButton();
         pricingCalculatorPage.openComputeEnginePage();
 
-        // Fill in the form on the Compute Engine page
+        // 5. Fill in the form on the Compute Engine page.
         var computeEnginePage = new ComputeEnginePage(driver);
         computeEnginePage.addGPU_activateButton();
         computeEnginePage.addInstances(order.getInstances());
@@ -110,12 +111,12 @@ public class PricingCalculatorTests extends BaseTests {
         computeEnginePage.selectSeries(order.getSeries());
         computeEnginePage.selectMachineType(order.getMachineType());
         computeEnginePage.addGPU_selectGPUModel(order.getAddGPU_GPUModel());
-        computeEnginePage.addGPU_selectGPUNumber();
+        computeEnginePage.addGPU_selectGPUNumber(order.getAddGPU_GPUNumber());
         computeEnginePage.selectLocalSSD(order.getSSD());
         computeEnginePage.selectDataCenterLocation(order.getDataCenterLocation());
         computeEnginePage.selectCommittedUse_oneYear();
 
-        // Verify the estimated cost is not there, which will activate the Screenshot for failure.
+        // 6. Verify the estimated cost is not there, which will activate the Screenshot for failure.
         assertFalse(computeEnginePage.getEstimatedCost());
     }
 }

@@ -66,6 +66,7 @@ public class ComputeEnginePage extends AbstractPage {
      */
     public ComputeEnginePage(WebDriver driver){
         super(driver);
+        log.info("ComputeEnginePage initialized with driver.");
     }
 
     /**
@@ -76,6 +77,7 @@ public class ComputeEnginePage extends AbstractPage {
     public void addInstances(String instances){
         wait.until(ExpectedConditions.visibilityOf(numberOfInstancesBar)).clear();
         wait.until(ExpectedConditions.visibilityOf(numberOfInstancesBar)).sendKeys(instances);
+        log.info("Added instances: " + instances);
     }
 
     /**
@@ -85,6 +87,7 @@ public class ComputeEnginePage extends AbstractPage {
      * @return The WebElement representing the option.
      */
     public WebElement getOptionToSelect (String option){
+        log.info("Getting option to select: " + option);
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath
                 ("//li[contains(., '" + option + "')]")));
     }
@@ -98,6 +101,7 @@ public class ComputeEnginePage extends AbstractPage {
         wait.until(ExpectedConditions.elementToBeClickable(operatingSystemBar)).click();
         WebElement operatingSystemSelected = getOptionToSelect(operatingSystem);
         operatingSystemSelected.click();
+        log.info("Selected operating system: " + operatingSystem);
     }
 
     /**
@@ -105,6 +109,7 @@ public class ComputeEnginePage extends AbstractPage {
      */
     public void selectProvisioningModel_regular(){
         wait.until(ExpectedConditions.elementToBeClickable(provisioningModel_regularOption)).click();
+        log.info("Selected provisioning model: Regular");
     }
 
     /**
@@ -116,6 +121,7 @@ public class ComputeEnginePage extends AbstractPage {
         wait.until(ExpectedConditions.elementToBeClickable(machineFamilyBar)).click();
         WebElement machineFamilySelected = getOptionToSelect(machineFamily);
         machineFamilySelected.click();
+        log.info("Selected machine family: " + machineFamily);
     }
 
     /**
@@ -127,6 +133,7 @@ public class ComputeEnginePage extends AbstractPage {
         wait.until(ExpectedConditions.elementToBeClickable(seriesBar)).click();
         WebElement seriesSelected = getOptionToSelect(series);
         seriesSelected.click();
+        log.info("Selected series: " + series);
     }
 
     /**
@@ -138,6 +145,7 @@ public class ComputeEnginePage extends AbstractPage {
         wait.until(ExpectedConditions.elementToBeClickable(machineTypeBar)).click();
         WebElement machineTypeSelected = getOptionToSelect(machineType);
         machineTypeSelected.click();
+        log.info("Selected machine type: " + machineType);
     }
 
     /**
@@ -145,6 +153,7 @@ public class ComputeEnginePage extends AbstractPage {
      */
     public void addGPU_activateButton() {
         wait.until(ExpectedConditions.elementToBeClickable(addGPUButton)).click();
+        log.info("Activated 'Add GPU' button.");
     }
 
     /**
@@ -153,22 +162,24 @@ public class ComputeEnginePage extends AbstractPage {
      * @param GPUModel The GPU model to select.
      */
     public void addGPU_selectGPUModel(String GPUModel) {
-                GPUModelBar = driver.findElements(By.xpath("//div[@role='combobox']")).get(7);
+        GPUModelBar = driver.findElements(By.xpath("//div[@role='combobox']")).get(7);
         wait.until(ExpectedConditions.elementToBeClickable(GPUModelBar)).click();
 
         WebElement modelSelected = getOptionToSelect(GPUModel);
         modelSelected.click();
+        log.info("Selected GPU model: " + GPUModel);
     }
 
     /**
      * Selects the GPU number.
      */
-    public void addGPU_selectGPUNumber() {
+    public void addGPU_selectGPUNumber(String GPUNumber) {
         GPUNumberBar = driver.findElements(By.xpath("//div[@role='combobox']")).get(8);
         wait.until(ExpectedConditions.elementToBeClickable(GPUNumberBar)).click();
 
-        WebElement numberSelected = driver.findElement(By.xpath("(//li[@data-value='1'])[1]"));
+        WebElement numberSelected = driver.findElement(By.xpath("//li[contains(@class, 'MCs1Pd') and .//span[normalize-space(text())='" + GPUNumber + "']]"));
         numberSelected.click();
+        log.info("Selected GPU number.");
     }
 
     /**
@@ -180,6 +191,7 @@ public class ComputeEnginePage extends AbstractPage {
         wait.until(ExpectedConditions.elementToBeClickable(localSSDBar)).click();
         WebElement SSDSelected = getOptionToSelect(localSSD);
         wait.until(ExpectedConditions.visibilityOf(SSDSelected)).click();
+        log.info("Selected local SSD: " + localSSD);
     }
 
     /**
@@ -191,6 +203,7 @@ public class ComputeEnginePage extends AbstractPage {
         wait.until(ExpectedConditions.elementToBeClickable(dataCenterLocationBar)).click();
         WebElement location = getOptionToSelect(dataCenterLocation);
         wait.until(ExpectedConditions.visibilityOf(location)).click();
+        log.info("Selected data center location: " + dataCenterLocation);
     }
 
     /**
@@ -198,6 +211,7 @@ public class ComputeEnginePage extends AbstractPage {
      */
     public void selectCommittedUse_oneYear(){
         wait.until(ExpectedConditions.elementToBeClickable(committedUse_oneYearOption)).click();
+        log.info("Selected committed use: One year.");
     }
 
     /**
@@ -207,6 +221,7 @@ public class ComputeEnginePage extends AbstractPage {
      * @throws InterruptedException If the thread is interrupted while waiting.
      */
     public Boolean getEstimatedCost() throws InterruptedException {
+        log.info("Getting estimated cost.");
         Thread.sleep(500);
         return wait.until(ExpectedConditions.visibilityOf(estimatedCostMessage)).isDisplayed();
     }
@@ -218,6 +233,7 @@ public class ComputeEnginePage extends AbstractPage {
         wait.until(ExpectedConditions.elementToBeClickable(shareButton));
         shareButton.click();
         shareButton.click();
+        log.info("Clicked share button.");
     }
 
     /**
@@ -226,9 +242,11 @@ public class ComputeEnginePage extends AbstractPage {
      * @param tabTitle The title of the tab to switch to.
      */
     public void clickEstimateSummaryButton(String tabTitle) {
+        log.info("Clicking Estimate Summary button and switching to tab with title: " + tabTitle);
         try {
             wait.until(ExpectedConditions.elementToBeClickable(openEstimateSummaryButton)).click();
         } catch (StaleElementReferenceException e) {
+            log.warn("StaleElementReferenceException caught, retrying click on Estimate Summary button.");
             wait.until(ExpectedConditions.elementToBeClickable(openEstimateSummaryButton)).click();
         }
 

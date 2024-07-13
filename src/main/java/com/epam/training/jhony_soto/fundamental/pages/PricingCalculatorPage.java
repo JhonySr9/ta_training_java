@@ -24,6 +24,7 @@ public class PricingCalculatorPage extends AbstractPage {
      */
     public PricingCalculatorPage(WebDriver driver){
         super(driver);
+        log.info("PricingCalculatorPage initialized with driver.");
     }
 
     /**
@@ -31,7 +32,9 @@ public class PricingCalculatorPage extends AbstractPage {
      */
     public void pressAddAnEstimateButton(){
         wait.until(ExpectedConditions.visibilityOf(addAnEstimateButton));
+        log.info("'Add to estimate' button is visible.");
         addAnEstimateButton.click();
+        log.info("Clicked 'Add to estimate' button.");
     }
 
     /**
@@ -39,6 +42,8 @@ public class PricingCalculatorPage extends AbstractPage {
      */
     public void openComputeEnginePage(){
         wait.until(ExpectedConditions.visibilityOf(computeEngineOption));
+        log.info("Compute Engine option is visible.");
         computeEngineOption.click();
+        log.info("Clicked Compute Engine option.");
     }
 }

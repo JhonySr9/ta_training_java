@@ -22,6 +22,7 @@ public class HomePage extends AbstractPage {
      */
     public HomePage(WebDriver driver) {
         super(driver);
+        log.info("HomePage initialized with driver.");
     }
 
     /**
@@ -29,10 +30,15 @@ public class HomePage extends AbstractPage {
      * @param searchValue is the string used to search.
      */
     public void useSearchBar(String searchValue){
+        log.info("Using search bar with value: " + searchValue);
         // Wait until the search button is visible, then click, enter the search value, and submit.
         wait.until(ExpectedConditions.visibilityOf(searchButton));
+        log.info("Search button is visible.");
         searchButton.click();
+        log.info("Clicked on the search button.");
         searchButton.sendKeys(searchValue);
+        log.info("Entered search value: " + searchValue);
         searchButton.submit();
+        log.info("Submitted the search.");
     }
 }

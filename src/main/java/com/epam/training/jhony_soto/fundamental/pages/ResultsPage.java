@@ -18,6 +18,7 @@ public class ResultsPage extends AbstractPage {
      */
     public ResultsPage(WebDriver driver) {
         super(driver);
+        log.info("ResultsPage initialized with driver.");
     }
 
     /**
@@ -28,6 +29,8 @@ public class ResultsPage extends AbstractPage {
     public void selectSearchResult(String searchValue) {
         // Wait until the search result is visible, then click it.
         WebElement searchResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='" + searchValue + "']")));
+        log.info("Search result is visible.");
         searchResult.click();
+        log.info("Clicked on the search result with value: " + searchValue);
     }
 }
