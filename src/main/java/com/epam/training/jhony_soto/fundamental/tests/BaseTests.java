@@ -25,9 +25,9 @@ public class BaseTests {
      * It initializes properties such as "browser" and "environment".
      * Adjusts these properties according to test environment needs.
      */
-    @BeforeClass
+    @BeforeSuite (groups = {"setUp"})
     public void setProperties(){
-        System.setProperty("browser", "default");
+        System.setProperty("browser", "chrome");
         System.setProperty("environment", "dev");
     }
 
@@ -35,7 +35,7 @@ public class BaseTests {
      * Configures WebDriver before starting each test method.
      * Sets up the ChromeDriver instance using DriverInitialization.
      */
-    @BeforeMethod
+    @BeforeMethod (groups = {"setUp"})
     public void setUp(){
         driver = DriverInitialization.getDriver();
         driver.manage().window().maximize();
@@ -45,7 +45,7 @@ public class BaseTests {
      * Closes WebDriver after finishing each test method.
      * Ensures the WebDriver instance quits if it is not null.
      */
-    @AfterMethod
+    @AfterMethod (groups = {"setUp"})
     public void turnOff(){
         DriverInitialization.closeDriver();
     }

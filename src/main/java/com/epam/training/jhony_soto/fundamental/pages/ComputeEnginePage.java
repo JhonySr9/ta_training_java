@@ -1,9 +1,6 @@
 package com.epam.training.jhony_soto.fundamental.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -54,6 +51,9 @@ public class ComputeEnginePage extends AbstractPage {
     @FindBy(xpath = "//style[contains(text(),'.SyW2Hf{--gm3-dialog-refactored-supporting-text-co')]")
     private WebElement styleDialog;
 
+    @FindBy (xpath = "//div[@class='message-container ']//span[@class='close']")
+    private WebElement closeQuestionMessageButton;
+
     private WebElement GPUModelBar;
 
     private WebElement GPUNumberBar;
@@ -81,18 +81,6 @@ public class ComputeEnginePage extends AbstractPage {
     }
 
     /**
-     * Gets the option element to select based on the provided option text.
-     *
-     * @param option The text of the option to select.
-     * @return The WebElement representing the option.
-     */
-    public WebElement getOptionToSelect (String option){
-        log.info("Getting option to select: " + option);
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath
-                ("//li[contains(., '" + option + "')]")));
-    }
-
-    /**
      * Selects the specified operating system value.
      *
      * @param operatingSystem The operating system value to select.
@@ -106,10 +94,19 @@ public class ComputeEnginePage extends AbstractPage {
 
     /**
      * Selects the "regular" provisioning model.
+     * This method waits for the element to be clickable and handles ElementClickInterceptedException if encountered.
      */
     public void selectProvisioningModel_regular(){
-        wait.until(ExpectedConditions.elementToBeClickable(provisioningModel_regularOption)).click();
-        log.info("Selected provisioning model: Regular");
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(provisioningModel_regularOption));
+            provisioningModel_regularOption.click();
+            log.info("Selected provisioning model: Regular");
+        } catch (ElementClickInterceptedException e) {
+            log.warn("ElementClickInterceptedException caught, retrying click on Regular button.");
+            provisioningModel_regularOption.click();
+            wait.until(ExpectedConditions.elementToBeClickable(provisioningModel_regularOption)).click();
+            log.info("Selected provisioning model: Regular");
+        }
     }
 
     /**
@@ -227,11 +224,18 @@ public class ComputeEnginePage extends AbstractPage {
     }
 
     /**
+     * Closes the questions message box by clicking a clickable close button.
+     */
+    public void closeQuestionsMessage() {
+        wait.until(ExpectedConditions.elementToBeClickable(closeQuestionMessageButton));
+        closeQuestionMessageButton.click();
+    }
+
+    /**
      * Clicks the share button to share the estimate.
      */
     public void submitShareButton() {
         wait.until(ExpectedConditions.elementToBeClickable(shareButton));
-        shareButton.click();
         shareButton.click();
         log.info("Clicked share button.");
     }
@@ -242,21 +246,19 @@ public class ComputeEnginePage extends AbstractPage {
      * @param tabTitle The title of the tab to switch to.
      */
     public void clickEstimateSummaryButton(String tabTitle) {
-        log.info("Clicking Estimate Summary button and switching to tab with title: " + tabTitle);
+        log.info("Clicking Estimate Summary button");
+        wait.until(ExpectedConditions.invisibilityOf(closeQuestionMessageButton));
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(openEstimateSummaryButton)).click();
+            wait.until(ExpectedConditions.elementToBeClickable(openEstimateSummaryButton));
+            openEstimateSummaryButton.click();
         } catch (StaleElementReferenceException e) {
             log.warn("StaleElementReferenceException caught, retrying click on Estimate Summary button.");
-            wait.until(ExpectedConditions.elementToBeClickable(openEstimateSummaryButton)).click();
+            wait.until(ExpectedConditions.elementToBeClickable(openEstimateSummaryButton));
+            openEstimateSummaryButton.click();
         }
 
-        var windows = driver.getWindowHandles();
-        for (String window : windows){
-            driver.switchTo().window(window);
-            if (tabTitle.equals(driver.getTitle())){
-                break;
-            }
-        }
+        log.info("Switching to tab with title: " + tabTitle);
+        changeToOtherTab(tabTitle);
     }
 
 }

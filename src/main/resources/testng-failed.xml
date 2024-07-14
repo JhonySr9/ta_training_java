@@ -1,11 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-    <suite name="Smoke" verbose="2">
+    <suite name="Failed" verbose="2">
         <test name="pricingCalculator">
             <groups>
                 <run>
                     <include name="setUp"/>
-                    <include name="smoke"/>
+                    <include name="failed"/>
                 </run>
             </groups>
             <packages>

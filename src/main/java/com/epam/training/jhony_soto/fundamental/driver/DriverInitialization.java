@@ -25,9 +25,9 @@ public class DriverInitialization {
 
         if (driver == null) {
             switch (System.getProperty("browser")) {
-                case "firefox": {
-                    WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
+                case "chrome": {
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
                     break;
                 }
                 case "edge": {
@@ -35,9 +35,9 @@ public class DriverInitialization {
                     driver = new EdgeDriver();
                     break;
                 }
-                default: {
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                case "firefox": {
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new FirefoxDriver();
                     break;
                 }
             }

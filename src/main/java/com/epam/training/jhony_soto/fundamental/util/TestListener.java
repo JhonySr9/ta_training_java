@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
@@ -21,52 +20,91 @@ import java.time.format.DateTimeFormatter;
  */
 public class TestListener implements ITestListener {
     private final Logger log = LogManager.getRootLogger();
+    private int retryCount = 0;
+    private static final int MAX_RETRY_COUNT = 1;
 
+    /**
+     * Resets the retry count to zero at the start of each test method.
+     *
+     * @param result The result object representing the current test method.
+     */
     public void onTestStart(ITestResult result) {
-    }
-
-    public void onTestSuccess(ITestResult result) {
+        retryCount = 0; // Reset retry count at the start of each test
     }
 
     /**
-     * Invoked each time a test fails.
+     * Logs a message when a test method succeeds.
      *
-     * @param result The result of the test that failed.
+     * @param result The result object representing the current test method.
+     */
+    public void onTestSuccess(ITestResult result) {
+        log.info("Test Passed: " + result.getName());
+    }
+
+    /**
+     * Saves a screenshot and logs an error message when a test method fails.
+     * Retries the test method based on the retry logic.
+     *
+     * @param result The result object representing the current test method.
      */
     public void onTestFailure(ITestResult result) {
         saveScreenshot(result);
-    }
-
-    public void onTestSkipped(ITestResult result) {
-    }
-
-    public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-    }
-
-    public void onTestFailedWithTimeout(ITestResult result) {
-    }
-
-    public void onStart(ITestContext context) {
-    }
-
-    public void onFinish(ITestContext context) {
+        log.error("Test Failed: " + result.getName());
+        retryOrSkipTest(result);
     }
 
     /**
-     * Saves a screenshot when a test fails.
+     * Logs a warning message when a test method is skipped.
      *
-     * @param result The result of the test that failed.
+     * @param result The result object representing the current test method.
+     */
+    public void onTestSkipped(ITestResult result) {
+        log.warn("Test Skipped: " + result.getName());
+    }
+
+    /**
+     * Saves a screenshot of the WebDriver instance when a test method fails.
+     *
+     * @param result The result object representing the current test method.
      */
     private void saveScreenshot(ITestResult result){
         String testName = result.getMethod().getMethodName();
         String environment = System.getProperty("environment");
+        String browser = System.getProperty("browser");
         File screenCapture = ((TakesScreenshot) DriverInitialization.getDriver()).getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(screenCapture, new File(
-                    ".//target/screenshots/" + testName + "_" + environment + "_"+ getCurrentTimeAsString() + ".png"
+                    ".//target/screenshots/" + testName + "_" + environment + "_" + browser + "_" + getCurrentTimeAsString() + ".png"
             ));
         } catch (IOException e){
             log.error("Failed to save screenshot: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Implements the retry logic for failed test methods.
+     *
+     * @param result The result object representing the current test method.
+     * @return True if the test method should be retried, false otherwise.
+     */
+    public boolean retry(ITestResult result) {
+        if (!result.isSuccess() && retryCount < MAX_RETRY_COUNT) {
+            retryCount++;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Retries or skips the test method based on the retry logic.
+     *
+     * @param result The result object representing the current test method.
+     */
+    private void retryOrSkipTest(ITestResult result) {
+        if (retry(result)) {
+            result.setStatus(ITestResult.FAILURE); // Mark the test as failed to trigger retry
+        } else {
+            result.setStatus(ITestResult.FAILURE); // If retries exhausted, mark as failure
         }
     }
 

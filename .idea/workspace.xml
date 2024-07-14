@@ -5,16 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be9a7ee5-fc77-4ce8-888f-26bddff8cd1e" name="Changes" comment="Added Test Listeners to take a screenshot at failure. Version 1.1">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/util/Retry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/testng-failed.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/driver/DriverInitialization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/driver/DriverInitialization.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/AbstractPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/AbstractPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/ComputeEnginePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/ComputeEnginePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/CostEstimateSummaryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/CostEstimateSummaryPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/HomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/PricingCalculatorPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/PricingCalculatorPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/ResultsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/pages/ResultsPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/services/CreatePricingOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/services/CreatePricingOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/services/TestDataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/services/TestDataReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/tests/BaseTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/tests/BaseTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/tests/PricingCalculatorTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/tests/PricingCalculatorTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/staging.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/staging.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/util/TestListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/jhony_soto/fundamental/util/TestListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/testng-all.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/testng-all.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/testng-smoke.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/testng-smoke.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,18 +62,31 @@
       <recent name="C:\Users\jhony\Downloads\ta_training_java\src\test\java" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.PricingCalculatorTests.usePricingCalculatorTest">
-    <configuration name="PricingCalculatorTests" type="TestNG" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.C:/Users/jhony/Downloads/ta_training_java/src/main/resources/testng-all.xml">
+    <configuration name="C:/Users/jhony/Downloads/ta_training_java/src/main/resources/testng-all.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="ta_training_java" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.epam.training.jhony_soto.fundamental.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.epam.training.jhony_soto.fundamental.tests" />
-      <option name="MAIN_CLASS_NAME" value="com.epam.training.jhony_soto.fundamental.tests.PricingCalculatorTests" />
-      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/main/resources/testng-all.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="C:/Users/jhony/Downloads/ta_training_java/src/main/resources/testng-failed.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="ta_training_java" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/main/resources/testng-failed.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="C:/Users/jhony/Downloads/ta_training_java/src/main/resources/testng-smoke.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="ta_training_java" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/main/resources/testng-smoke.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
       <properties />
       <listeners />
       <method v="2">
@@ -110,9 +131,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.PricingCalculatorTests.usePricingCalculatorTest" />
-        <item itemvalue="TestNG.PricingCalculatorTests" />
+        <item itemvalue="TestNG.C:/Users/jhony/Downloads/ta_training_java/src/main/resources/testng-all.xml" />
+        <item itemvalue="TestNG.C:/Users/jhony/Downloads/ta_training_java/src/main/resources/testng-smoke.xml" />
+        <item itemvalue="TestNG.C:/Users/jhony/Downloads/ta_training_java/src/main/resources/testng-failed.xml" />
         <item itemvalue="TestNG.PricingCalculatorTests.failedUsePricingCalculatorTest" />
+        <item itemvalue="TestNG.PricingCalculatorTests.usePricingCalculatorTest" />
       </list>
     </recent_temporary>
   </component>

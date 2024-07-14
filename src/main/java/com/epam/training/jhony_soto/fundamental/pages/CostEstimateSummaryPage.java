@@ -10,6 +10,17 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  */
 public class CostEstimateSummaryPage extends AbstractPage {
 
+    // Constants for field names
+    private static final String FIELD_NUMBER_OF_INSTANCES = "Number of Instances";
+    private static final String FIELD_OPERATING_SYSTEM = "Operating System / Software";
+    private static final String FIELD_PROVISIONING_MODEL = "Provisioning Model";
+    private static final String FIELD_MACHINE_TYPE = "Machine type";
+    private static final String FIELD_GPU_MODEL = "GPU Model";
+    private static final String FIELD_NUMBER_OF_GPUS = "Number of GPUs";
+    private static final String FIELD_LOCAL_SSD = "Local SSD";
+    private static final String FIELD_REGION = "Region";
+    private static final String FIELD_COMMITTED_USE = "Committed use discount options";
+
     /**
      * Constructor for CostEstimateSummaryPage.
      * Initializes WebDriverWait and PageFactory elements.
@@ -41,8 +52,9 @@ public class CostEstimateSummaryPage extends AbstractPage {
      * @return True if the number of instances corresponds to the expected value, otherwise false.
      */
     public boolean numberOfInstancesCorresponds(String instances) {
-        log.info("Verifying if number of instances corresponds to: " + instances);
-        return getSummaryFieldValue("Number of Instances").contains(instances);
+        String actualValue = getSummaryFieldValue(FIELD_NUMBER_OF_INSTANCES);
+        log.info("Verifying if number of instances corresponds to: " + instances + ". Actual value: " + actualValue);
+        return actualValue.contains(instances);
     }
 
     /**
@@ -52,8 +64,9 @@ public class CostEstimateSummaryPage extends AbstractPage {
      * @return True if the operating system corresponds to the expected value, otherwise false.
      */
     public boolean operatingSystemCorresponds(String operatingSystem) {
-        log.info("Verifying if operating system corresponds to: " + operatingSystem);
-        return getSummaryFieldValue("Operating System / Software").contains(operatingSystem);
+        String actualValue = getSummaryFieldValue(FIELD_OPERATING_SYSTEM);
+        log.info("Verifying if operating system corresponds to: " + operatingSystem + ". Actual value: " + actualValue);
+        return actualValue.contains(operatingSystem);
     }
 
     /**
@@ -63,8 +76,9 @@ public class CostEstimateSummaryPage extends AbstractPage {
      * @return True if the provisioning model corresponds to the expected value, otherwise false.
      */
     public boolean provisioningModelCorresponds(String provisioningModel) {
-        log.info("Verifying if provisioning model corresponds to: " + provisioningModel);
-        return getSummaryFieldValue("Provisioning Model").contains(provisioningModel);
+        String actualValue = getSummaryFieldValue(FIELD_PROVISIONING_MODEL);
+        log.info("Verifying if provisioning model corresponds to: " + provisioningModel + ". Actual value: " + actualValue);
+        return actualValue.contains(provisioningModel);
     }
 
     /**
@@ -74,8 +88,9 @@ public class CostEstimateSummaryPage extends AbstractPage {
      * @return True if the series corresponds to the expected value, otherwise false.
      */
     public boolean seriesCorresponds(String series) {
-        log.info("Verifying if series corresponds to: " + series);
-        return getSummaryFieldValue("Machine type").contains(series.toLowerCase());
+        String actualValue = getSummaryFieldValue(FIELD_MACHINE_TYPE);
+        log.info("Verifying if series corresponds to: " + series.toLowerCase() + ". Actual value: " + actualValue);
+        return actualValue.contains(series.toLowerCase());
     }
 
     /**
@@ -85,8 +100,9 @@ public class CostEstimateSummaryPage extends AbstractPage {
      * @return True if the machine type corresponds to the expected value, otherwise false.
      */
     public boolean machineTypeCorresponds(String machineType) {
-        log.info("Verifying if machine type corresponds to: " + machineType);
-        return getSummaryFieldValue("Machine type").contains(machineType);
+        String actualValue = getSummaryFieldValue(FIELD_MACHINE_TYPE);
+        log.info("Verifying if machine type corresponds to: " + machineType + ". Actual value: " + actualValue);
+        return actualValue.contains(machineType);
     }
 
     /**
@@ -96,8 +112,9 @@ public class CostEstimateSummaryPage extends AbstractPage {
      * @return True if the GPU model corresponds to the expected value, otherwise false.
      */
     public boolean GPUModelCorresponds(String GPUModel) {
-        log.info("Verifying if GPU model corresponds to: " + GPUModel);
-        return getSummaryFieldValue("GPU Model").contains(GPUModel);
+        String actualValue = getSummaryFieldValue(FIELD_GPU_MODEL);
+        log.info("Verifying if GPU model corresponds to: " + GPUModel + ". Actual value: " + actualValue);
+        return actualValue.contains(GPUModel);
     }
 
     /**
@@ -107,8 +124,9 @@ public class CostEstimateSummaryPage extends AbstractPage {
      * @return True if the number of GPUs corresponds to the expected value, otherwise false.
      */
     public boolean GPUNumberCorresponds(String GPUNumber) {
-        log.info("Verifying if number of GPUs corresponds to: " + GPUNumber);
-        return getSummaryFieldValue("Number of GPUs").contains(GPUNumber);
+        String actualValue = getSummaryFieldValue(FIELD_NUMBER_OF_GPUS);
+        log.info("Verifying if number of GPUs corresponds to: " + GPUNumber + ". Actual value: " + actualValue);
+        return actualValue.contains(GPUNumber);
     }
 
     /**
@@ -118,8 +136,9 @@ public class CostEstimateSummaryPage extends AbstractPage {
      * @return True if the local SSD corresponds to the expected value, otherwise false.
      */
     public boolean localSSDCorresponds(String localSSD) {
-        log.info("Verifying if local SSD corresponds to: " + localSSD);
-        return getSummaryFieldValue("Local SSD").contains(localSSD);
+        String actualValue = getSummaryFieldValue(FIELD_LOCAL_SSD);
+        log.info("Verifying if local SSD corresponds to: " + localSSD + ". Actual value: " + actualValue);
+        return actualValue.contains(localSSD);
     }
 
     /**
@@ -129,8 +148,9 @@ public class CostEstimateSummaryPage extends AbstractPage {
      * @return True if the data center location corresponds to the expected value, otherwise false.
      */
     public boolean dataCenterLocationCorresponds(String dataCenterLocation) {
-        log.info("Verifying if data center location corresponds to: " + dataCenterLocation);
-        return getSummaryFieldValue("Region").contains(dataCenterLocation);
+        String actualValue = getSummaryFieldValue(FIELD_REGION);
+        log.info("Verifying if data center location corresponds to: " + dataCenterLocation + ". Actual value: " + actualValue);
+        return actualValue.contains(dataCenterLocation);
     }
 
     /**
@@ -140,8 +160,9 @@ public class CostEstimateSummaryPage extends AbstractPage {
      * @return True if the committed usage corresponds to the expected value, otherwise false.
      */
     public boolean committedUsageCorresponds(String committedUsage) {
-        log.info("Verifying if committed usage corresponds to: " + committedUsage);
-        return getSummaryFieldValue("Committed use discount options").contains(committedUsage);
+        String actualValue = getSummaryFieldValue(FIELD_COMMITTED_USE);
+        log.info("Verifying if committed usage corresponds to: " + committedUsage + ". Actual value: " + actualValue);
+        return actualValue.contains(committedUsage);
     }
 
 }

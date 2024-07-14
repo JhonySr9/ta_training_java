@@ -3,6 +3,7 @@ package com.epam.training.jhony_soto.fundamental.tests;
 import com.epam.training.jhony_soto.fundamental.model.PricingOrder;
 import com.epam.training.jhony_soto.fundamental.pages.*;
 import com.epam.training.jhony_soto.fundamental.services.CreatePricingOrder;
+import com.epam.training.jhony_soto.fundamental.util.Retry;
 import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.*;
@@ -17,7 +18,7 @@ public class PricingCalculatorTests extends BaseTests {
      * Testing of the Pricing Calculator functionality.
      * @throws InterruptedException error in case a value is not displayed after a wait.
      */
-    @Test (groups = {"smoke"}, invocationCount = 1)
+    @Test (groups = {"smoke"}, invocationCount = 2, retryAnalyzer = Retry.class)
     public void usePricingCalculatorTest() throws InterruptedException {
         ////// Data //////
         PricingOrder order = CreatePricingOrder.withAllData();
@@ -54,14 +55,17 @@ public class PricingCalculatorTests extends BaseTests {
         computeEnginePage.selectDataCenterLocation(order.getDataCenterLocation());
         computeEnginePage.selectCommittedUse_oneYear();
 
-        // 6. Verify the estimated cost.
+        // 6. Close the Question Message Box.
+        computeEnginePage.closeQuestionsMessage();
+
+        // 7. Verify the estimated cost.
         assertTrue(computeEnginePage.getEstimatedCost());
 
-        // 7. Share the estimate and navigate to the summary page.
+        // 8. Share the estimate and navigate to the summary page.
         computeEnginePage.submitShareButton();
         computeEnginePage.clickEstimateSummaryButton(SUMMARY_TAB_NAME);
 
-        // 8. Verify the values on the summary page corresponds to the data used to fill the form.
+        // 9. Verify the values on the summary page corresponds to the data used to fill the form.
         var costEstimateSummaryPage = new CostEstimateSummaryPage(driver);
         assertTrue(costEstimateSummaryPage.numberOfInstancesCorresponds(order.getInstances()));
         assertTrue(costEstimateSummaryPage.operatingSystemCorresponds(order.getOperatingSystem()));
@@ -79,7 +83,7 @@ public class PricingCalculatorTests extends BaseTests {
      * Testing of the Pricing Calculator functionality.
      * @throws InterruptedException error in case a value is not displayed after a wait.
      */
-    @Test (groups = {"smoke"}, invocationCount = 1)
+    @Test (groups = {"failed"})
     public void failedUsePricingCalculatorTest() throws InterruptedException {
         ////// Data //////
         PricingOrder order = CreatePricingOrder.withAllData();
@@ -116,7 +120,10 @@ public class PricingCalculatorTests extends BaseTests {
         computeEnginePage.selectDataCenterLocation(order.getDataCenterLocation());
         computeEnginePage.selectCommittedUse_oneYear();
 
-        // 6. Verify the estimated cost is not there, which will activate the Screenshot for failure.
+        // 6. Close the Question Message Box.
+        computeEnginePage.closeQuestionsMessage();
+
+        // 7. Verify the estimated cost is not there, which will activate the Screenshot for failure.
         assertFalse(computeEnginePage.getEstimatedCost());
     }
 }

@@ -2,8 +2,8 @@
 
     <suite name="All" verbose="2">
         <test name="pricingCalculator">
-            <classes>
-                <class name="com.epam.training.jhony_soto.fundamental.tests.PricingCalculatorTests" />
-            </classes>
+            <packages>
+                <package name="com.epam.training.jhony_soto.fundamental.tests"/>
+            </packages>
         </test>
 </suite>

@@ -27,10 +27,15 @@ public class ResultsPage extends AbstractPage {
      * @param searchValue The string value to search and click.
      */
     public void selectSearchResult(String searchValue) {
-        // Wait until the search result is visible, then click it.
-        WebElement searchResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='" + searchValue + "']")));
-        log.info("Search result is visible.");
-        searchResult.click();
-        log.info("Clicked on the search result with value: " + searchValue);
+        String searchResultXpath = "//a[normalize-space()='" + searchValue + "']";
+
+        try {
+            WebElement searchResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(searchResultXpath)));
+            log.info("Search result with '" + searchValue + "' value is visible.");
+            searchResult.click();
+            log.info("Clicked on the search result '" + searchValue + "'.");
+        } catch (Exception e) {
+            log.error("Failed to click on the search result '" + searchValue + "'.", e);
+        }
     }
 }
