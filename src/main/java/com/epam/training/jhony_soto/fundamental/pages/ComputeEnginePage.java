@@ -36,7 +36,7 @@ public class ComputeEnginePage extends AbstractPage {
     @FindBy(xpath = "//div[@aria-describedby='c46']")
     private WebElement dataCenterLocationBar;
 
-    @FindBy(xpath = "//label[@for='1-year']/ancestor::div[contains(@class, 'e2WL2b')]")
+    @FindBy(xpath = "//label[normalize-space()='1 year']/ancestor::div[contains(@class, 'e2WL2b')]")
     private WebElement committedUse_oneYearOption;
 
     @FindBy(xpath = "//div[contains(@class, 'wFCpDb')]")
@@ -103,8 +103,8 @@ public class ComputeEnginePage extends AbstractPage {
             log.info("Selected provisioning model: Regular");
         } catch (ElementClickInterceptedException e) {
             log.warn("ElementClickInterceptedException caught, retrying click on Regular button.");
-            provisioningModel_regularOption.click();
             wait.until(ExpectedConditions.elementToBeClickable(provisioningModel_regularOption)).click();
+            provisioningModel_regularOption.click();
             log.info("Selected provisioning model: Regular");
         }
     }
@@ -148,9 +148,10 @@ public class ComputeEnginePage extends AbstractPage {
     /**
      * Activates the "add GPU" button.
      */
-    public void addGPU_activateButton() {
+    public void addGPU_activateButton() throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(addGPUButton)).click();
         log.info("Activated 'Add GPU' button.");
+        Thread.sleep(500);
     }
 
     /**
