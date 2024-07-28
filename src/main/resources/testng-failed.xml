@@ -4,7 +4,7 @@
         <test name="pricingCalculator">
             <groups>
                 <run>
-                    <include name="setUp"/>
+                    <include name="setting"/>
                     <include name="failed"/>
                 </run>
             </groups>

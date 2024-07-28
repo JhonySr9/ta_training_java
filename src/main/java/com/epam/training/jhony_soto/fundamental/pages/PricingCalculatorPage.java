@@ -31,19 +31,30 @@ public class PricingCalculatorPage extends AbstractPage {
      * Clicks the "Add to estimate" button on the Pricing Calculator page.
      */
     public void pressAddAnEstimateButton(){
-        wait.until(ExpectedConditions.visibilityOf(addAnEstimateButton));
-        log.info("'Add to estimate' button is visible.");
-        addAnEstimateButton.click();
-        log.info("Clicked 'Add to estimate' button.");
+        try {
+            wait.until(ExpectedConditions.visibilityOf(addAnEstimateButton));
+            addAnEstimateButton.click();
+
+        }   catch (Exception e) {
+            log.error("The 'Add to estimate' button was not clicked due to an Exception", e);
+            throw e;
+        }
     }
 
     /**
      * Navigates to the Compute Engine Page.
+     * Waits until the compute engine option is visible, then clicks it.
+     *
+     * @throws Exception if an error occurs while navigating to the Compute Engine Page.
      */
     public void openComputeEnginePage(){
-        wait.until(ExpectedConditions.visibilityOf(computeEngineOption));
-        log.info("Compute Engine option is visible.");
-        computeEngineOption.click();
-        log.info("Clicked Compute Engine option.");
+        try {
+            wait.until(ExpectedConditions.visibilityOf(computeEngineOption));
+            computeEngineOption.click();
+        }   catch (Exception e) {
+            log.error("Failed to navigate to the Compute Engine Page.", e);
+            throw e;
+        }
+
     }
 }

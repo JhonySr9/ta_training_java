@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.NoSuchElementException;
+
 /**
  * This class represents the home page of Google Cloud and provides methods to interact with it.
  */
@@ -26,23 +28,33 @@ public class HomePage extends AbstractPage {
     }
 
     /**
-     * Uses the search bar to look for the searchValue and move into it.
-     * @param searchValue is the string used to search.
+     * Uses the search bar to look for the provided search value and submits the search.
+     * Waits until the search button is visible and clickable, then clicks it, enters the search value, and submits.
+     *
+     * @param searchValue the string used to search.
+     * @throws NoSuchElementException if the search button or input field is not found.
+     * @throws Exception if any other error occurs while using the search bar.
      */
     public void useSearchBar(String searchValue){
         try {
-            log.info("Using search bar with value: " + searchValue);
-            // Wait until the search button is visible, then click, enter the search value, and submit.
-            wait.until(ExpectedConditions.visibilityOf(searchButton));
-            log.info("Search button is visible.");
-            searchButton.click();
-            log.info("Clicked on the search button.");
-            searchButton.sendKeys(searchValue);
-            log.info("Entered search value: " + searchValue);
-            searchButton.submit();
-            log.info("Submitted the search.");
-        } catch (Exception e) {
+            // Wait until the search button is visible and clickable
+            WebElement searchBtn = wait.until(ExpectedConditions.visibilityOf(searchButton));
+
+            // Click the search button
+            searchBtn.click();
+
+            // Enter the search value
+            searchBtn.sendKeys(searchValue);
+
+            // Submit the search
+            searchBtn.submit();
+
+        }   catch (NoSuchElementException e) {
+            log.error("Failed to find the element containing the value: " + searchValue, e);
+            throw e;
+        }   catch (Exception e) {
             log.error("Failed to use search bar with value: " + searchValue, e);
+            throw e;
         }
     }
 }

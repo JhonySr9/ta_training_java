@@ -36,6 +36,7 @@ public class ResultsPage extends AbstractPage {
             log.info("Clicked on the search result '" + searchValue + "'.");
         } catch (Exception e) {
             log.error("Failed to click on the search result '" + searchValue + "'.", e);
+            throw e;
         }
     }
 }

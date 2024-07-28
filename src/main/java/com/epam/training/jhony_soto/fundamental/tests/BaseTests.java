@@ -2,6 +2,8 @@ package com.epam.training.jhony_soto.fundamental.tests;
 
 import com.epam.training.jhony_soto.fundamental.driver.DriverInitialization;
 import com.epam.training.jhony_soto.fundamental.util.TestListener;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
@@ -14,6 +16,7 @@ import org.testng.annotations.*;
 public class BaseTests {
 
     protected WebDriver driver;
+    public static final Logger log = LogManager.getRootLogger();
     protected final String HOMEPAGE_URL = "https://cloud.google.com/";
     protected final String PRICING_CALCULATOR_SEARCH_VALUE = "Google Cloud Pricing Calculator";
     protected final String SUMMARY_TAB_NAME = "Google Cloud Estimate Summary";
@@ -25,7 +28,7 @@ public class BaseTests {
      * It initializes properties such as "browser" and "environment".
      * Adjusts these properties according to test environment needs.
      */
-    @BeforeSuite (groups = {"setUp"})
+    @BeforeSuite (groups = {"setting"})
     public void setProperties(){
         System.setProperty("browser", "chrome");
         System.setProperty("environment", "dev");
@@ -35,7 +38,7 @@ public class BaseTests {
      * Configures WebDriver before starting each test method.
      * Sets up the ChromeDriver instance using DriverInitialization.
      */
-    @BeforeMethod (groups = {"setUp"})
+    @BeforeMethod (groups = {"setting"})
     public void setUp(){
         driver = DriverInitialization.getDriver();
         driver.manage().window().maximize();
@@ -45,7 +48,7 @@ public class BaseTests {
      * Closes WebDriver after finishing each test method.
      * Ensures the WebDriver instance quits if it is not null.
      */
-    @AfterMethod (groups = {"setUp"})
+    @AfterMethod (groups = {"setting"})
     public void turnOff(){
         DriverInitialization.closeDriver();
     }

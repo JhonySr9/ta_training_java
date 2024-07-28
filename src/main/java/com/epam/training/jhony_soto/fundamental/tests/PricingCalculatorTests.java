@@ -60,6 +60,7 @@ public class PricingCalculatorTests extends BaseTests {
 
         // 7. Verify the estimated cost.
         assertTrue(computeEnginePage.getEstimatedCost());
+        log.info("Verified that the estimated cost was retrieved successfully.");
 
         // 8. Share the estimate and navigate to the summary page.
         computeEnginePage.submitShareButton();
@@ -67,16 +68,35 @@ public class PricingCalculatorTests extends BaseTests {
 
         // 9. Verify the values on the summary page corresponds to the data used to fill the form.
         var costEstimateSummaryPage = new CostEstimateSummaryPage(driver);
-        assertTrue(costEstimateSummaryPage.numberOfInstancesCorresponds(order.getInstances()));
-        assertTrue(costEstimateSummaryPage.operatingSystemCorresponds(order.getOperatingSystem()));
-        assertTrue(costEstimateSummaryPage.provisioningModelCorresponds(PROVISIONING_MODEL_REGULAR_OPTION));
-        assertTrue(costEstimateSummaryPage.seriesCorresponds(order.getSeries()));
-        assertTrue(costEstimateSummaryPage.machineTypeCorresponds(order.getMachineType()));
-        assertTrue(costEstimateSummaryPage.GPUModelCorresponds(order.getAddGPU_GPUModel()));
-        assertTrue(costEstimateSummaryPage.GPUNumberCorresponds(order.getAddGPU_GPUNumber()));
-        assertTrue(costEstimateSummaryPage.localSSDCorresponds(order.getSSD()));
-        assertTrue(costEstimateSummaryPage.dataCenterLocationCorresponds(order.getDataCenterLocation()));
-        assertTrue(costEstimateSummaryPage.committedUsageCorresponds(COMMITTED_USAGE_1YEAR_OPTION));
+        assertTrue(costEstimateSummaryPage.isNumberOfInstancesCorresponding(order.getInstances()));
+        log.info("Verified that the number of instances corresponds to: " + order.getInstances());
+
+        assertTrue(costEstimateSummaryPage.isOperatingSystemCorresponding(order.getOperatingSystem()));
+        log.info("Verified that the operating system corresponds to: " + order.getOperatingSystem());
+
+        assertTrue(costEstimateSummaryPage.isProvisioningModelCorresponding(PROVISIONING_MODEL_REGULAR_OPTION));
+        log.info("Verified that the provisioning model corresponds to: " + PROVISIONING_MODEL_REGULAR_OPTION);
+
+        assertTrue(costEstimateSummaryPage.isSeriesCorresponding(order.getSeries()));
+        log.info("Verified that the series corresponds to: " + order.getSeries());
+
+        assertTrue(costEstimateSummaryPage.isMachineTypeCorresponding(order.getMachineType()));
+        log.info("Verified that the machine type corresponds to: " + order.getMachineType());
+
+        assertTrue(costEstimateSummaryPage.isGPUModelCorresponding(order.getAddGPU_GPUModel()));
+        log.info("Verified that the GPU model corresponds to: " + order.getAddGPU_GPUModel());
+
+        assertTrue(costEstimateSummaryPage.isGPUNumberCorresponding(order.getAddGPU_GPUNumber()));
+        log.info("Verified that the GPU number corresponds to: " + order.getAddGPU_GPUNumber());
+
+        assertTrue(costEstimateSummaryPage.isLocalSSDCorresponding(order.getSSD()));
+        log.info("Verified that the local SSD corresponds to: " + order.getSSD());
+
+        assertTrue(costEstimateSummaryPage.isDataCenterLocationCorresponding(order.getDataCenterLocation()));
+        log.info("Verified that the data center location corresponds to: " + order.getDataCenterLocation());
+
+        assertTrue(costEstimateSummaryPage.isCommittedUsageCorresponding(COMMITTED_USAGE_1YEAR_OPTION));
+        log.info("Verified that the committed usage corresponds to: " + COMMITTED_USAGE_1YEAR_OPTION);
     }
 
     /**
@@ -122,8 +142,10 @@ public class PricingCalculatorTests extends BaseTests {
 
         // 6. Close the Question Message Box.
         computeEnginePage.closeQuestionsMessage();
+        log.info("Verified that the estimated cost was retrieved successfully.");
 
         // 7. Verify the estimated cost is not there, which will activate the Screenshot for failure.
         assertFalse(computeEnginePage.getEstimatedCost());
+        log.info("Verified that the estimated cost is not present, triggering screenshot for failure.");
     }
 }
